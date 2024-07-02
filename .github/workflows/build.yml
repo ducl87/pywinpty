@@ -33,7 +33,7 @@ jobs:
           If ('${{ matrix.arch }}' -eq 'x32') {
             $env:CONDA_FORCE_32BIT = 1
           }
-          conda create -n py38 python=3.8.9 -c conda-forge -y
+          conda create -n py38 python=3.3 -c conda-forge -y
           conda activate py38
           conda install cython winpty m2w64-toolchain libpython -y
           python -m pip install -U -I setuptools
