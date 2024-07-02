@@ -33,19 +33,19 @@ jobs:
           If ('${{ matrix.arch }}' -eq 'x32') {
             $env:CONDA_FORCE_32BIT = 1
           }
-          conda create -n py33 python=3.3 -c conda-forge -y
-          conda activate py33
+          conda create -n py38 python=3.8.9 -c conda-forge -y
+          conda activate py38
           conda install cython winpty m2w64-toolchain libpython -y
-          python -m pip install -U -I setuptools==39
-          # python -m pip install pip==10
-          # pip download --python-version 33 --no-deps pywinpty
+          python -m pip install -U -I setuptools
+          # python -m pip install pip
+          # pip download --python-version 38 --no-deps pywinpty
           # or a specific version
           pip download pywinpty==0.5.7
           $TAR = $(Get-ChildItem pywinpty*tar.gz).name
           tar xzf $TAR
           cd $($TAR -replace ".tar.gz", "")
-          # $env:LIBRARY_INC = "$env:CONDA\envs\py33\Library\include"
-          # $env:LIBRARY_LIB = "$env:CONDA\envs\py33\Library\lib"
+          # $env:LIBRARY_INC = "$env:CONDA\envs\py38\Library\include"
+          # $env:LIBRARY_LIB = "$env:CONDA\envs\py38\Library\lib"
           $env:LIBRARY_INC = "C:\winpty\include\winpty"
           $env:LIBRARY_LIB = "C:\winpty\lib"
           python setup.py build_ext -i
