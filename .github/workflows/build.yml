@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [x32, x64]
+        arch: [x64]
     steps:
       - name: Setup Miniconda
         run: |
@@ -29,11 +29,11 @@ jobs:
         run: |
           $ErrorActionPreference = "Continue"
           conda config --set allow_conda_downgrades true
-          conda install conda=4.5.12 -y
+          conda install conda -y
           If ('${{ matrix.arch }}' -eq 'x32') {
             $env:CONDA_FORCE_32BIT = 1
           }
-          conda create -n py38 python=3.3 -c conda-forge -y
+          conda create -n py38 python=3.8 -c conda-forge -y
           conda activate py38
           conda install cython winpty m2w64-toolchain libpython -y
           python -m pip install -U -I setuptools
